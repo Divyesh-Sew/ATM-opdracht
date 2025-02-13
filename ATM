@@ -1,46 +1,125 @@
 #include <iostream>
 #include <string>
 #include <stdlib.h>
+#include <fstream>
+
 using namespace std;
 
     int main() {
+        for (int i = 0; i < 1000; i++)
+        {
+
+
+
+
+
+                    
     cout << "Enter a number" << endl;
-    cout << "1.Balance 2.Withdrawing 3.depositing "<< endl;
+    cout << "1.Balance 2.Withdrawing 3.depositing or type 0 cancel "<< endl;
     int Money = 1000;
-    int Confirmation;
-    cin >> Confirmation;
-    if (int Confirmation = 1)
-    {
-        cout << "Your Balance is " << Money <<endl ;
-    }
-    cout << "do you want to withdraw ?" << endl << "1.Yes  0.NO" << endl;
-    int withdraw;
-    cin >> Confirmation;   
-    if (int Confirmation = 0)
-    {
-        exit(0);
-        cout << "A";
-        return 0;
-    }
-    cout << "Enter your withdrawal amount: ";  
-        if (int Confirmation = 2)
-    { 
+    ifstream file("Balance.txt");
+    file >> Money;
+    file.close();
+    int Check;
+    cin >> Check;
 
-                             
-        cin >> withdraw;  
-        cout << "You have withdrawn " << withdraw << endl;
-    }
-        
 
-    int New_Money = Money - withdraw;
-    cout << "Your Balance is now " << New_Money << endl;
 
-        if (int Confirmation = 3)
+
+
+
+    if (Check==1)
     {
-        int Deposit_Amount;
+    cout << Money << endl;
+    }
+
+
+
+if (Money < 0)
+{
+    cout << "You have insufficient funds" << endl;
+    cout << "You cannot withdraw only deposit " << endl;
+
+}
+
+
+    if (Money > 0)
+    {
+        if (Check==2)
+        {
+        int wthd;
+        cout << "Type the amount you want to withdraw" << endl;
+        cin >> wthd;
+        int Withdrawn_money = Money - wthd;
+        int Money = Withdrawn_money; 
+        ofstream file("Balance.txt");
+        file << Money;
+        file.close();
+        cout <<"Your balance is now  " << Money << endl;
+        }
+    
+    }
+    else
+    {
+            cout << "You do not have enough money to withdraw ! " << endl;
+            int yon;
+            int insuff;
+            cout << "do you wish to deposit ? 1. yes 2. no" << endl;
+            cin >> yon;
+            if (yon == 1 )
+            {
+                cout << "How much ? " << endl;
+                int moredepo;
+                cin >> moredepo;
+                int Sum = Money + moredepo;
+                int Mon = Sum;
+                int Money = Mon;
+                ofstream file("Balance.txt");
+                file << Money;
+                file.close();
+            }
+            if (yon == 0)
+            {
+                cout << " you have entered no ! ";
+            }
+            
+
     }
     
+    
+   
+
+
+
+
+    if (Check==3)
+    {
+        int deposit;
+        cout << "Type the amount you want to deposit" << endl;
+        cin >> deposit;
+        int Deposited_money = Money + deposit;
+        int Money = Deposited_money;
+        ofstream file("Balance.txt");
+        file << Money;
+        file.close();  
+        cout << "Your Balance is now  " << Money << endl;
+    }
+
+
+
+
+    else if (Check==0)
+    {
+        return 0;
+    }
+    
+    
+    
+        }
+
 
     return 0;
 }
- //Divyesh deel nog niet af is een test. 
+
+
+// Dit is Divyesh zijn deel. 
